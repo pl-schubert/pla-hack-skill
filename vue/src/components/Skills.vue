@@ -26,9 +26,8 @@
           Ready to do radiology
         </th>
         <th>Phone Number</th>
-        <th>E-Mail</th>
       </tr>
-      <tr v-for="worker in workers" v-bind:key="worker.name">
+      <tr v-for="worker in filteredWorkers" v-bind:key="worker.name">
         <td>{{ worker.name }}</td>
         <td v-if="skill == 'all Skills' || skill == 'vaccination'">
           {{ worker.vaccine == 1 ? "yes" : "no" }}
@@ -39,7 +38,7 @@
         <td v-if="skill == 'all Skills' || skill == 'radiology'">
           {{ worker.radiology == 1 ? "yes" : "no" }}
         </td>
-        <td>{{ worker.phonenumber }}</td>
+        <td>{{ worker.phone }}</td>
       </tr>
     </table>
   </div>
@@ -65,23 +64,37 @@ export default {
     totalVaccine: function () {
       let total = 0;
       this.workers.forEach((worker) => {
-        total += +worker.vaccine;
+        if (!isNaN(worker.vaccine)) total += +worker.vaccine;
       });
       return total;
     },
     totalIntubation: function () {
       let total = 0;
       this.workers.forEach((worker) => {
-        total += +worker.intubation;
+        if (!isNaN(worker.intubation)) total += +worker.intubation;
       });
       return total;
     },
     totalRadiology: function () {
       let total = 0;
       this.workers.forEach((worker) => {
-        total += +worker.radiology;
+        if (!isNaN(worker.radiology)) total += +worker.radiology;
       });
       return total;
+    },
+    filteredWorkers() {
+      switch (this.skill) {
+        case "all Skills":
+          return this.workers;
+        case "vaccination":
+          return this.workers.filter((worker) => worker.vaccine == 1);
+        case "intubation":
+          return this.workers.filter((worker) => worker.intubation == 1);
+        case "radiology":
+          return this.workers.filter((worker) => worker.radiology == 1);
+        default:
+          return this.workers;
+      }
     },
   },
 
