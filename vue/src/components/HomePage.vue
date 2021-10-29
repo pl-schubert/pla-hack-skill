@@ -6,8 +6,12 @@
         {{ location }}
       </option>
     </select>
-    <h3>You selected location: {{ this.selectedLocation }}</h3>
-    <Skills :location="this.selectedLocation" />
+    <select v-model="selectedSkills">
+      <option v-for="skill in skills" v-bind:key="skill">
+        {{ skill }}
+      </option>
+    </select>
+    <Skills :location="this.selectedLocation" :skill="this.selectedSkills" />
   </div>
 </template>
 
@@ -17,8 +21,10 @@ export default {
   name: "HelloWorld",
   data() {
     return {
-      selectedLocation: "Tschad",
-      locations: ["Frankfurt am Main", "Tschad"],
+      selectedLocation: "all locations",
+      locations: ["all locations", "Abuja", "N'Djamena", "Frankfurt am Main"],
+      selectedSkills: "all Skills",
+      skills: ["all Skills", "vaccination", "intubation", "radiology"],
     };
   },
   components: {
