@@ -9,7 +9,7 @@
       Ready to set intubation: {{ totalIntubation }}
     </h4>
     <h4 v-if="skill == 'all Skills' || skill == 'radiology'">
-      Ready to set intubation: {{ totalRadiology }}
+      Ready to do radiology: {{ totalRadiology }}
     </h4>
 
     <h2>Contact Details:</h2>
