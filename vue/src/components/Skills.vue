@@ -13,7 +13,7 @@
     </h4>
 
     <h2>Contact Details:</h2>
-    <table>
+    <table class="table">
       <tr>
         <th>Helper Name</th>
         <th v-if="skill == 'all Skills' || skill == 'vaccination'">
