@@ -1,18 +1,43 @@
 <template>
   <div>
-    <h2>Summary for {{ location }} and {{ skill }}:</h2>
-    <h4>Total helpers: {{ workers.length }}</h4>
-    <h4 v-if="skill == 'all Skills' || skill == 'vaccination'">
-      Ready to vaccinate: {{ totalVaccine }}
-    </h4>
-    <h4 v-if="skill == 'all Skills' || skill == 'intubation'">
-      Ready to set intubation: {{ totalIntubation }}
-    </h4>
-    <h4 v-if="skill == 'all Skills' || skill == 'radiology'">
-      Ready to set intubation: {{ totalRadiology }}
-    </h4>
+    <div class="row mt-5">
+      <h4>Summary for {{ location }} and {{ skill }}:</h4>
+    </div>
+    <div class="row">
+      <h4>Total helpers: {{ workers.length }}</h4>
+    </div>
+    <div class="row">
+      <div class="col">
+      Vaccine workers
+        <div class="progress">
+          <div
+            v-bin:class="'progress-bar w-'+totalVaccine"
+            role="progressbar"
+          ></div>
+        </div>
+      </div>
+      <div class="col">
+        Intubation workers
+        <div class="progress">
+          <div
+            v-bind:class="'progress-bar w-'+totalIntubation"
+            role="progressbar"
+          ></div>
+        </div>
+      </div>
+      <div class="col">
+        Radiology workers
+        <div class="progress">
+          <div
+            v-bind:class="'progress-bar w-'+totalRadiology"
+            role="progressbar"
+          ></div>
+        </div>
 
-    <h2>Contact Details:</h2>
+      </div>
+    </div>
+    <div class="row mt-5">
+    <h4>Worker overview</h4>
     <table class="table">
       <tr>
         <th>Helper Name</th>
@@ -42,6 +67,7 @@
         <td>{{ worker.phonenumber }}</td>
       </tr>
     </table>
+    </div>
   </div>
 </template>
 
@@ -67,21 +93,21 @@ export default {
       this.workers.forEach((worker) => {
         total += +worker.vaccine;
       });
-      return total;
+      return (total/workers.length)*100;
     },
     totalIntubation: function () {
       let total = 0;
       this.workers.forEach((worker) => {
         total += +worker.intubation;
       });
-      return total;
+      return (total/workers.length)*100;
     },
     totalRadiology: function () {
       let total = 0;
       this.workers.forEach((worker) => {
         total += +worker.radiology;
       });
-      return total;
+      return (total/workers.length)*100;
     },
   },
 
@@ -100,5 +126,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>
