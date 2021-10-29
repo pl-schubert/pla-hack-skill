@@ -8,64 +8,83 @@
     </div>
     <div class="row">
       <div class="col">
-      Vaccine workers
+        Vaccine workers
+
         <div class="progress">
           <div
-            v-bin:class="'progress-bar w-'+totalVaccine"
+            class="progress-bar"
             role="progressbar"
-          ></div>
+            v-bind:style="
+              'width: ' +
+              Math.round((totalVaccine / workers.length) * 100) +
+              '%'
+            "
+          >{{ totalVaccine }}</div>
         </div>
       </div>
       <div class="col">
         Intubation workers
         <div class="progress">
           <div
-            v-bind:class="'progress-bar w-'+totalIntubation"
+            class="progress-bar"
             role="progressbar"
-          ></div>
+            v-bind:style="
+              'width: ' +
+              Math.round((totalIntubation / workers.length) * 100) +
+              '%'
+            "
+          >
+            {{ totalIntubation }}
+          </div>
         </div>
       </div>
       <div class="col">
         Radiology workers
         <div class="progress">
           <div
-            v-bind:class="'progress-bar w-'+totalRadiology"
+            class="progress-bar"
             role="progressbar"
-          ></div>
+            v-bind:style="
+              'width: ' +
+              Math.round((totalRadiology / workers.length) * 100) +
+              '%'
+            "
+          >
+            {{ totalRadiology }}
+          </div>
         </div>
-
       </div>
     </div>
     <div class="row mt-5">
-    <h4>Worker overview</h4>
-    <table class="table">
-      <tr>
-        <th>Helper Name</th>
-        <th v-if="skill == 'all Skills' || skill == 'vaccination'">
-          Ready to vaccinate
-        </th>
-        <th v-if="skill == 'all Skills' || skill == 'intubation'">
-          Ready to set intubation
-        </th>
-        <th v-if="skill == 'all Skills' || skill == 'radiology'">
-          Ready to do radiology
-        </th>
-        <th>Phone Number</th>
-      </tr>
-      <tr v-for="worker in filteredWorkers" v-bind:key="worker.name">
-        <td>{{ worker.name }}</td>
-        <td v-if="skill == 'all Skills' || skill == 'vaccination'">
-          {{ worker.vaccine == 1 ? "yes" : "no" }}
-        </td>
-        <td v-if="skill == 'all Skills' || skill == 'intubation'">
-          {{ worker.intubation == 1 ? "yes" : "no" }}
-        </td>
-        <td v-if="skill == 'all Skills' || skill == 'radiology'">
-          {{ worker.radiology == 1 ? "yes" : "no" }}
-        </td>
-        <td>{{ worker.phone }}</td>
-      </tr>
-    </table>
+      <h4>Worker overview</h4>
+      <table class="table">
+        <tr>
+          <th>Helper Name</th>
+          <th v-if="skill == 'all Skills' || skill == 'vaccination'">
+            Ready to vaccinate
+          </th>
+          <th v-if="skill == 'all Skills' || skill == 'intubation'">
+            Ready to set intubation
+          </th>
+          <th v-if="skill == 'all Skills' || skill == 'radiology'">
+            Ready to do radiology
+          </th>
+          <th>Phone Number</th>
+        </tr>
+        <tr v-for="worker in filteredWorkers" v-bind:key="worker.name">
+          <td>{{ worker.name }}</td>
+          <td v-if="skill == 'all Skills' || skill == 'vaccination'">
+            {{ worker.vaccine == 1 ? "yes" : "no" }}
+          </td>
+          <td v-if="skill == 'all Skills' || skill == 'intubation'">
+            {{ worker.intubation == 1 ? "yes" : "no" }}
+          </td>
+          <td v-if="skill == 'all Skills' || skill == 'radiology'">
+            {{ worker.radiology == 1 ? "yes" : "no" }}
+          </td>
+          <td>{{ worker.phone }}</td>
+        </tr>
+      </table>
     </div>
   </div>
 </template>
@@ -92,21 +111,21 @@ export default {
       this.workers.forEach((worker) => {
         if (!isNaN(worker.vaccine)) total += +worker.vaccine;
       });
-      return (total/workers.length)*100;
+      return total;
     },
     totalIntubation: function () {
       let total = 0;
       this.workers.forEach((worker) => {
         if (!isNaN(worker.intubation)) total += +worker.intubation;
       });
-      return (total/workers.length)*100;
+      return total;
     },
     totalRadiology: function () {
       let total = 0;
       this.workers.forEach((worker) => {
         if (!isNaN(worker.radiology)) total += +worker.radiology;
       });
-      return (total/workers.length)*100;
+      return total;
     },
     filteredWorkers() {
       switch (this.skill) {
