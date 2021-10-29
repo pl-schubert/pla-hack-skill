@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 // 1. Import the libs you need
 import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // 2. Add your credentials from step 1
 const config = {
@@ -22,6 +23,7 @@ const config = {
     BrowserModule,
     provideFirebaseApp(() => initializeApp(config)),
     provideFirestore(() => getFirestore()),
+    BrowserAnimationsModule,
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent]
