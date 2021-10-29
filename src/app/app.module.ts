@@ -8,20 +8,20 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // 2. Add your credentials from step 1
-const config = {
-  apiKey: "AIzaSyAqTD-vs390HDmi1_YUJd-QZLEOT8MMG2A",
-  authDomain: "msf-bcg-platinion.firebaseapp.com",
-  projectId: "msf-bcg-platinion",
-  storageBucket: "msf-bcg-platinion.appspot.com",
-  messagingSenderId: "1099372300211",
-  appId: "1:1099372300211:web:d01231ecc8625cda43edc6",
-  measurementId: "G-DE8QMTZTNX"
+const firebaseConfig = {
+  apiKey: "AIzaSyAa6V6UzCGirpanCdN8PTO4psNUHeSIDnQ",
+  authDomain: "mslxbcgplatinion.firebaseapp.com",
+  projectId: "mslxbcgplatinion",
+  storageBucket: "mslxbcgplatinion.appspot.com",
+  messagingSenderId: "833622492545",
+  appId: "1:833622492545:web:e00a18eb90ae402a325480",
+  measurementId: "G-1DQZ5T6RD5"
 };
 
 @NgModule({
   imports: [
     BrowserModule,
-    provideFirebaseApp(() => initializeApp(config)),
+    provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideFirestore(() => getFirestore()),
     BrowserAnimationsModule,
   ],
