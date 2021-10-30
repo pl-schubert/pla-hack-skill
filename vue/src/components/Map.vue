@@ -3,7 +3,6 @@
     <Navbar />
 
     <div class="container">
-      <h1>Map</h1>
       <GmapMap
         :center="{ lat: 30, lng: 10 }"
         :zoom="3"
