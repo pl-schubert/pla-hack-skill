@@ -58,7 +58,7 @@
       <h4>Worker overview</h4>
       <table class="table" v-if="filteredWorkers.length > 0">
         <tr>
-          <th>Helper Name</th>
+          <th>Worker Name</th>
           <th v-if="skill == 'all Skills' || skill == 'vaccination'">
             Ready to vaccinate
           </th>
