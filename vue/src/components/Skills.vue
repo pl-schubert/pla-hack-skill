@@ -4,9 +4,6 @@
       <h4>Summary for {{ location }} and {{ skill }}:</h4>
     </div>
     <div class="row">
-      <h4>Total helpers: {{ workers.length }}</h4>
-    </div>
-    <div class="row">
       <div class="col">
         Vaccine workers
 
@@ -19,7 +16,9 @@
               Math.round((totalVaccine / workers.length) * 100) +
               '%'
             "
-          >{{ totalVaccine }}</div>
+          >
+            {{ totalVaccine }}
+          </div>
         </div>
       </div>
       <div class="col">
@@ -57,7 +56,7 @@
     </div>
     <div class="row mt-5">
       <h4>Worker overview</h4>
-      <table class="table">
+      <table class="table" v-if="filteredWorkers.length > 0">
         <tr>
           <th>Helper Name</th>
           <th v-if="skill == 'all Skills' || skill == 'vaccination'">
@@ -85,6 +84,9 @@
           <td>{{ worker.phone }}</td>
         </tr>
       </table>
+      <h3 class="text-danger" v-else>
+        No helper in {{ location }} for {{ skill }}
+      </h3>
     </div>
   </div>
 </template>
